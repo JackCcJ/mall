@@ -19,6 +19,7 @@ npm run build
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### 商城项目开发
+
 ```
 购物商城开发
 ```
