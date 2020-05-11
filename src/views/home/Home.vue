@@ -5,7 +5,9 @@
 </template>
 
 <script>
-  import NavBar from 'components/common/navbar/navBar'
+  import NavBar from 'components/common/navbar/navBar';
+  import {getHomeMultidata} from 'network/home';
+  
   export default {
     name: "Home",
     components:{
