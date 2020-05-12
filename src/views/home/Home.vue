@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
+    <nav-bar class="home-nav"><div slot="center">风羽购物商城</div></nav-bar>
     <home-swiper :banners="banners" />
     <recommend-view :recommends="recommends" />
   </div>

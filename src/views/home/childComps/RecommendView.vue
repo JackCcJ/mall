@@ -25,6 +25,8 @@ export default {
     .recommend{
         display: flex;
         width: 100%;
+        padding: 5px 0 30px 0;
+        border-bottom :10px solid #eee;
     }
     .recommend-item{
         flex: 1;
@@ -34,8 +36,6 @@ export default {
     .recommend-item img {
         width: 65px;
         height: 65px;
-    }
-    .recommend-item p {
-        margin-top: 10px;
+        margin-bottom: 15px;
     }
 </style>

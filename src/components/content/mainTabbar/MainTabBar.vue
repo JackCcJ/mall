@@ -37,7 +37,4 @@
 </script>
 
 <style scoped>
-  .tabber{
-    width: 100%;
-  }
 </style>
