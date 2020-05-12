@@ -3,12 +3,11 @@
       <div v-for="item in recommends" :key="item.id" class="recommend-item">
           <a :href="item.link">
               <img :src="item.image" alt="">
-              <p>{{item.title}}</p>
+              <div>{{item.title}}</div>
           </a>
       </div>
   </div>
 </template>
-
 <script>
 export default {
     name:'RecommendView',
@@ -22,7 +21,6 @@ export default {
     }
 }
 </script>
-
 <style>
     .recommend{
         display: flex;
