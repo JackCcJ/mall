@@ -14,10 +14,10 @@
   export default {
     name: "Home",
     components:{
-      getHomeMultidata,
       NavBar,
       HomeSwiper,
-      RecommendView
+      RecommendView,
+      getHomeMultidata
     },
     data(){
       return {
@@ -28,12 +28,12 @@
     created(){
       getHomeMultidata().then(res => {
         for( let i = 0;i<res.data.banner.list.length;i++){
-          res.data.banner.list[i].id = i
-        }
-        for(let j = 0 ;j < res.data.recommend.list.length;j++){
-          res.data.recommend.list[j].id = j
+          res.data.banner.list[i].id = i;
         }
         this.banners = res.data.banner.list; //轮播图数据
+        for(let j = 0 ;j < res.data.recommend.list.length;j++){
+          res.data.recommend.list[j].id = j;
+        }
         this.recommends = res.data.recommend.list;
       })
     }
