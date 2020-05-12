@@ -224,6 +224,7 @@
     justify-content: center;
     position: absolute;
     width: 100%;
+    height: 5px;
     bottom: 8px;
   }
 
