@@ -5,6 +5,7 @@
     <recommend-view :recommends="recommends" />
     <feature-view />
     <tab-control class="tab-control" :titles="['流行','新款','精选']" />
+    <goods-list :goods="goods['pop'].list" />
   </div>
 </template>
 
@@ -15,10 +16,10 @@
   //网络请求组件
   import {getHomeMultidata,getHomeGoods} from 'network/home';
   //子组件
-  import HomeSwiper from './childComps/HomeSwiper';
+  import HomeSwiper from './childComps/HomeSwiper'
   import RecommendView from './childComps/RecommendView'
   import FeatureView from './childComps/FeatureView'
-
+  import goodsList from 'components/content/goods/goodsList'
   export default {
     name: "Home",
     components:{
@@ -27,7 +28,8 @@
       getHomeMultidata,
       HomeSwiper,
       RecommendView,
-      FeatureView
+      FeatureView,
+      goodsList
     },
     data(){
       return {
