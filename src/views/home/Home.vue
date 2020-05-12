@@ -14,6 +14,7 @@
   export default {
     name: "Home",
     components:{
+      getHomeMultidata,
       NavBar,
       HomeSwiper,
       RecommendView

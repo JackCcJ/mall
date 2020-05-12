@@ -21,7 +21,8 @@ export default {
         }
     },
     components:{
-       Swiper, SwiperItem
+        Swiper,
+        SwiperItem
     }
 }
 </script>
