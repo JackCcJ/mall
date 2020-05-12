@@ -1,5 +1,5 @@
 <template>
-  <swiper>
+  <swiper class="swiper">
       <swiper-item v-for="item in banners" :key="item.id">
         <a :href="item.link">
           <img :src="item.image" alt="">
@@ -21,8 +21,7 @@ export default {
         }
     },
     components:{
-        Swiper
-      , SwiperItem
+       Swiper, SwiperItem
     }
 }
 </script>
