@@ -11,6 +11,7 @@
   import {getHomeMultidata} from 'network/home';
   import HomeSwiper from './childComps/HomeSwiper';
   import RecommendView from './childComps/RecommendView'
+  
   export default {
     name: "Home",
     components:{
@@ -27,13 +28,7 @@
     },
     created(){
       getHomeMultidata().then(res => {
-        for( let i = 0;i<res.data.banner.list.length;i++){
-          res.data.banner.list[i].id = i;
-        }
         this.banners = res.data.banner.list; //轮播图数据
-        for(let j = 0 ;j < res.data.recommend.list.length;j++){
-          res.data.recommend.list[j].id = j;
-        }
         this.recommends = res.data.recommend.list;
       })
     }
