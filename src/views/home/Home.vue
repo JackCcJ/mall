@@ -8,6 +8,7 @@
 <script>
   import NavBar from 'components/common/navbar/navBar';
   import {getHomeMultidata} from 'network/home';
+  import {Swiper, SwiperItem} from 'components/common/swiper/Swiper';
   export default {
     name: "Home",
     components:{
@@ -22,7 +23,7 @@
     created(){
       getHomeMultidata().then(res => {
         console.log(res);
-        this.banners = res.data.banner.list;
+        this.banners = res.data.banner.list; //轮播图数据
         this.recommends = res.data.recommend.list;
       })
     }
