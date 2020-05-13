@@ -1,5 +1,6 @@
 <template>
   <div class="navBar">
+    <!-- 构建顶部导航组件 -->
 	  <div class="left"><slot name="left"></slot></div>
     <div class="center"><slot name="center"></slot></div>
 	  <div class="right"><slot name="right"></slot></div>
@@ -14,6 +15,7 @@ export default {
 
 <style scoped>
   .navBar{
+    width: 100%;
     display: flex;
     height: 44px;
     text-align: center;

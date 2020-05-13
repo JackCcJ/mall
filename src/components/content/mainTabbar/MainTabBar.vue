@@ -24,14 +24,14 @@
 </template>
 
 <script>
-  import TabBar from 'components/common/tabbar/TabBar'
-  import TabBarItem from 'components/common/tabbar/TabBarItem'
+  import TabBar from 'components/common/tabbar/TabBar'//导入父级TabBar
+  import TabBarItem from 'components/common/tabbar/TabBarItem'//导入需要传入的插槽
 
   export default {
     name: "MainTabBar",
     components: {
-      TabBar,
-      TabBarItem
+      TabBar, //注册组件
+      TabBarItem//注册插槽组件
     }
   }
 </script>

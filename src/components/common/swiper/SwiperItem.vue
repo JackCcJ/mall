@@ -1,6 +1,7 @@
 <template>
   <div class="slide">
     <slot></slot>
+    <!-- 需要导入数据的入口 -->
   </div>
 </template>
 

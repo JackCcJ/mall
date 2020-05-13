@@ -20,11 +20,12 @@ export default {
         }
     },data(){
         return{
-            currentIndex:0
+            currentIndex:0 //索引的值
         }
     },methods:{
             itemclick(index){
-                this.currentIndex = index
+                this.currentIndex = index; //根据点击的索引更改样式
+                this.$emit('tabClick',index);//向父组件传入当前点击的选项
             }
     }
 }

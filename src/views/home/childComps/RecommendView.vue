@@ -1,5 +1,6 @@
 <template>
   <div class="recommend">
+      <!-- 分类组件 -->
       <div v-for="item in recommends" :key="item.id" class="recommend-item">
           <a :href="item.link">
               <img :src="item.image" alt="">
@@ -13,7 +14,7 @@ export default {
     name:'RecommendView',
     props:{
         recommends:{
-            type:Array,
+            type:Array,//定义接受父组件的值
             default(){
                 return[]
             }

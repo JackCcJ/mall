@@ -1,4 +1,5 @@
 <template>
+<!-- 定义组件雏形 -->
   <div id="tab-bar">
     <slot></slot>
   </div>
