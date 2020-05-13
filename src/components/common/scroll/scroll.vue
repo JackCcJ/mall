@@ -9,14 +9,33 @@
 <script>
 import Bscroll from 'better-scroll';//导入插件
 export default {
-    name:'scroll',data(){
+    name:'scroll',
+    props:{
+        probeType:{
+            type:Number,
+            default:0
+        },
+        pullUpLoad:{
+            type:Boolean,
+            default:false
+        }
+    },
+    data(){
         return{
-            scroll:null//构建一个空的属性
+            scroll:null,//构建一个空的属性
         }
     },
     mounted(){
         this.scroll = new Bscroll(this.$refs.wrapper,{ //开启滚动插件，拿到唯一值
-            click:true //默认点击事件无效，开启点击事件
+            click:true ,//默认点击事件无效，开启点击事件
+            probeType:this.probeType,
+            pullUpLoad:this.pullUpLoad
+        })
+        this.scroll.on('scroll',(position)=>{ //实时监听坐标的回调
+            this.$emit('scroll',position)
+        })
+        this.scroll.on('pullUpLoad',()=>{
+            
         })
     },
     methods:{

@@ -1,21 +1,21 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav"><div slot="center">风羽购物商城</div></nav-bar>
-    <!-- 设定需要滚动插件的区域 -->
-    <scroll class="content" ref="scroll">
+    <!-- 设定需要滚动插件的区域，传入是否实时监听数据 -->
+    <scroll class="content" ref="scroll" :probe-type="3" @scroll="scroll" :pull-up-load="true">
     <!-- 传入banners需要的值 -->
     <home-swiper :banners="banners" />
     <!-- 传入分类数据 -->
     <recommend-view :recommends="recommends" />
     <!-- 大图传入 -->
     <feature-view />
-    <!-- Tab选项卡构建，传入需要分类的值 -->
+    <!-- Tab选项卡构建，传入需要分类的值，以及接受子组件的值-->
     <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick='tabClick'/>
     <!-- 主要内容的数据，传入子组件 -->
     <goods-list :goods='showGoods' />
     </scroll>
     <!-- 回到顶部的组件，监听组件的事件 -->
-    <back-top @click.native="backClick" />
+    <back-top @click.native="backClick" v-show="backTop"/>
   </div>
 </template>
 
@@ -55,7 +55,8 @@
           'new':{page:0,list:[]},
           'sell':{page:0,list:[]}
         },
-        currentType:"pop"  //定义默认传入子组件的值
+        currentType:"pop", //定义默认传入子组件的值
+        backTop:false      //定义显示隐藏属性
       }
     },
     created(){ //当页面渲染时
@@ -86,6 +87,9 @@
       },
       backClick(){
         this.$refs.scroll.scrollTo(0,0,700); //回到顶部选择坐标以及时间
+      },
+      scroll(position){ //获取返回顶部的坐标，大于-1000显示，小于隐藏
+        this.backTop = (-position.y) > 1000
       },
       //网络请求相关方法
       getHomeMultidata(){
