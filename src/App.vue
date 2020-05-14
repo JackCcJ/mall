@@ -1,6 +1,9 @@
 <template>
   <div id="app" class="wrapper">
-    <router-view/>
+    <!-- 不希望销毁 -->
+    <keep-alive> 
+      <router-view/>
+    </keep-alive>
     <main-tab-bar/>
   </div>
 </template>

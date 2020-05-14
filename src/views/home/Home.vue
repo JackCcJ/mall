@@ -2,15 +2,16 @@
   <div id="home">
     <nav-bar class="home-nav"><div slot="center">精品百搭购物商城</div></nav-bar>
     <!-- 设定需要滚动插件的区域，传入是否实时监听数据 -->
+    <tab-control class="tab-control2" :titles="['流行','新款','精选']" @tabClick='tabClick' ref="tabControl1" v-show="isTabFixed" />
     <scroll class="content" ref="scroll" :probe-type="3" @scroll="scroll" :pull-up-load="true" @pullingUp="loadMore">
     <!-- 传入banners需要的值 -->
-    <home-swiper :banners="banners" />
+    <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"/>
     <!-- 传入分类数据 -->
     <recommend-view :recommends="recommends" />
     <!-- 大图传入 -->
     <feature-view />
     <!-- Tab选项卡构建，传入需要分类的值，以及接受子组件的值-->
-    <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick='tabClick'/>
+    <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick='tabClick' ref="tabControl2" />
     <!-- 主要内容的数据，传入子组件 -->
     <goods-list :goods='showGoods' />
     </scroll>
@@ -56,7 +57,10 @@
           'sell':{page:0,list:[]}
         },
         currentType:"pop", //定义默认传入子组件的值
-        backTop:false      //定义显示隐藏属性
+        backTop:false,      //定义显示隐藏属性
+        tabOffseTop:0,
+        isTabFixed:false,
+        saveY:0
       }
     },
     created(){ //当页面渲染时
@@ -84,12 +88,25 @@
             this.currentType = "sell"
             break
         }
+        this.$refs.tabControl1.currentIndex = index
+        this.$refs.tabControl2.currentIndex = index
+      },
+      swiperImageLoad(){
+       this.tabOffseTop = this.$refs.tabControl2.$el.offsetTop
       },
       backClick(){
         this.$refs.scroll.scrollTo(0,0,700); //回到顶部选择坐标以及时间
       },
+      activated() {
+        this.$refs.scroll.scrollTo(0, this.saveY , 0)
+        this.$refs.scroll.refresh()
+      },
+      deactivated() {
+        this.saveY = this.$refs.scroll.getscrolly()
+      },
       scroll(position){ //获取返回顶部的坐标，大于-1000显示，小于隐藏
         this.backTop = (-position.y) > 1000
+        this.isTabFixed  =  (-position.y) > this.tabOffseTop
       },
       //网络请求相关方法
       getHomeMultidata(){
@@ -109,34 +126,31 @@
       loadMore(){
         this.getHomeGoods(this.currentType) //拿到到底部的回调执行加载数据函数
         this.$refs.scroll.scroll.refresh()  //解决异步加载导致页面滑不动的bug
-      }
-    }
+      },
+    },
   }
 </script>
 
 <style scoped>
   #home{
     height: 100vh;
-    padding-top: 44px;
   }
  .home-nav{
    color: #fff;
    background: var(--color-tint);
-   top: 0;
-   left: 0;
-   position: fixed;
-   width: 100%;
-   z-index: 99;
    height: 44px;
  }
  .tab-control{
    background-color: #fff;
    z-index: 99;
    position: sticky;
-   top: 43px;
  }
  .content{
    height: calc(100% - 44px);
    overflow: hidden;
+ }
+ .tab-control2{
+   position: relative;
+   z-index: 99;
  }
 </style>

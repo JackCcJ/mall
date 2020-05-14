@@ -1,6 +1,6 @@
 <template>
-  <div class="goods-item">
-    <!-- 接受父组件的属性并且渲染 -->
+  <div class="goods-item" @click="itemClcik">
+    <!-- 接收父组件的数据并且渲染 -->
     <img :src="goodsItem.show.img" alt="">
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
@@ -17,9 +17,16 @@ export default {
         goodsItem:{ //接受父组件的值，不定义无法使用，规定默认值
             type:Object,
             default(){
-                return {}
+                return {
+
+                }
             }
         }
+    },
+    methods:{
+      itemClcik(){
+        this.$router.push('/detail/' + this.goodsItem.iid)
+      }
     }
 }
 </script>
@@ -30,7 +37,6 @@ export default {
     position: relative;
     width: 48%;
   }
-
   .goods-item img {
     width: 100%;
     border-radius: 5px;
