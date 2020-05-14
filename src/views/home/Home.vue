@@ -1,8 +1,8 @@
 <template>
   <div id="home">
-    <nav-bar class="home-nav"><div slot="center">风羽购物商城</div></nav-bar>
+    <nav-bar class="home-nav"><div slot="center">精品百搭购物商城</div></nav-bar>
     <!-- 设定需要滚动插件的区域，传入是否实时监听数据 -->
-    <scroll class="content" ref="scroll" :probe-type="3" @scroll="scroll" :pull-up-load="true">
+    <scroll class="content" ref="scroll" :probe-type="3" @scroll="scroll" :pull-up-load="true" @pullingUp="loadMore">
     <!-- 传入banners需要的值 -->
     <home-swiper :banners="banners" />
     <!-- 传入分类数据 -->
@@ -103,7 +103,12 @@
         getHomeGoods(type,page).then(res=>{  //传入需要拿到数据的值
         this.goods[type].list.push(...res.data.list) //把拿到数据的集合添加的数组
         this.goods[type].page += 1    //设置默认的页码
+        this.$refs.scroll.finishPullUp() //默认只能加载一次，调这个函数能继续加载
       })
+      },
+      loadMore(){
+        this.getHomeGoods(this.currentType) //拿到到底部的回调执行加载数据函数
+        this.$refs.scroll.scroll.refresh()  //解决异步加载导致页面滑不动的bug
       }
     }
   }

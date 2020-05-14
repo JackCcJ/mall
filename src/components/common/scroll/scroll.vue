@@ -28,19 +28,22 @@ export default {
     mounted(){
         this.scroll = new Bscroll(this.$refs.wrapper,{ //开启滚动插件，拿到唯一值
             click:true ,//默认点击事件无效，开启点击事件
-            probeType:this.probeType,
-            pullUpLoad:this.pullUpLoad
+            probeType:this.probeType, //监听实时坐标
+            pullUpLoad:this.pullUpLoad //开启滚到底部的回调
         })
         this.scroll.on('scroll',(position)=>{ //实时监听坐标的回调
             this.$emit('scroll',position)
         })
-        this.scroll.on('pullUpLoad',()=>{
-            
+        this.scroll.on('pullingUp',()=>{
+            this.$emit('pullingUp');
         })
     },
     methods:{
         scrollTo(x,y,time=500){
             this.scroll.scrollTo(x,y,time) //构建控制坐标属性，以便于父组件控制时间以及
+        },
+        finishPullUp(){
+            this.scroll.finishPullUp()
         }
     }
 }

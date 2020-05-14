@@ -11,7 +11,7 @@ module.exports = {
       }
     },
     devServer:{
-      host:'192.168.0.47',
+      host:'192.168.0.57',
       port:'8808',
       https:false,
       open:false,
