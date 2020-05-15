@@ -1,5 +1,8 @@
 <template>
   <nav-bar>
+      <div slot="left" class="left" @click="backClick">
+          <img src="~assets/img/common/back.svg" alt="">
+      </div>
     <div slot="center" class="titles">
         <div v-for="(item , index) in titles" :class="{active:index==currentIndex}" @click="itmeClick(index)" :key="item.id">
             {{item}}
@@ -25,6 +28,9 @@ export default {
     },methods:{
         itmeClick(index){
             this.currentIndex = index
+        },
+        backClick(){
+            this.$router.back()
         }
     }
 }
@@ -41,5 +47,12 @@ export default {
     }
     .active{
         color: red;
+    }
+    .left{
+        margin-top: 2.54px;
+    }
+    .left img {
+        width: 16px;
+        height: 20px;
     }
 </style>

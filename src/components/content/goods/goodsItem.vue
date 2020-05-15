@@ -1,7 +1,7 @@
 <template>
-  <div class="goods-item" @click="itemClcik">
+  <div class="goods-item" @click="itemClick">
     <!-- 接收父组件的数据并且渲染 -->
-    <img :src="goodsItem.show.img" alt="">
+    <img :src="goodsItem.show.img" alt="" >
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -24,7 +24,7 @@ export default {
         }
     },
     methods:{
-      itemClcik(){
+      itemClick(){
         this.$router.push('/detail/' + this.goodsItem.iid)
       }
     }
